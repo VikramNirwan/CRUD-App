@@ -10,6 +10,8 @@ import {
   Button,
 } from "@mui/material";
 
+import { addUser } from "../service/api";
+
 const Container = styled(FormGroup)`
   width: 50%;
   margin: 5% auto 0 auto;
@@ -25,7 +27,6 @@ const defaultObject = {
   phone: "",
 };
 
-const addUserDetails = () => {};
 export default function AddUser() {
   const [user, setUser] = useState(defaultObject);
 
@@ -34,7 +35,9 @@ export default function AddUser() {
     setUser({ ...user, [e.target.name]: e.target.value });
     // console.log(user);
   };
-
+  const addUserDetails = async () => {
+    await addUser(user);
+  };
   return (
     <Container>
       <Typography variant="h4">Add User</Typography>
